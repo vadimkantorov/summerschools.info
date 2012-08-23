@@ -46,9 +46,9 @@
 	<script id="schoolListTemplate" type="x-jquery-tmpl">
 		<tr class="{{:#index%2 ? 'even' : 'odd'}}">
 			<td>{{:gsx$deadline.$t}}</td>
-			<td>{{:gsx$name.$t}}</td>
+			<td><a href="{{>gsx$link.$t}}">{{:gsx$name.$t}}</a></td>
 			<td>{{:gsx$dates.$t}}</td>
-			<td>{{:gsx$location.$t}}</td>
+			<td><a href="http://maps.google.com?q={{:gsx$location.$t}}">{{:gsx$location.$t}}</a></td>
 			<td>{{:gsx$grants.$t}}</td>
 		</tr>
 	</script>
