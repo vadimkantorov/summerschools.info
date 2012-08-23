@@ -253,3 +253,5 @@ footer {
     color:#444;
   }
 }
+tr.even {background-color:#fff}
+tr.odd {background-color:#eee}
