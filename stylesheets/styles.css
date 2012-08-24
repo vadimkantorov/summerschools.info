@@ -255,3 +255,6 @@ footer {
 }
 tr.even {background-color:#fff}
 tr.odd {background-color:#eee}
+
+td.old {background-color:#FF82A0}
+td.notOld {background-color:#BDECB6}
