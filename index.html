@@ -38,7 +38,20 @@
 				<th>Location</th>
 				<th>Grants</th>
 			</thead>
-			<tbody id="schoolList">
+			<tbody id="schoolListNew">
+			</tbody>
+		</table>
+		<a id="showPreviousLink" href="javascript:togglePrevious()">Show previous schools</a>
+		<a id="hidePreviousLink" class="hidden" href="javascript:togglePrevious()">Hide previous schools</a>
+		<table id="previousSchoolTable" class="hidden">
+			<thead>
+				<th>Deadline</th>
+				<th>Name</th>
+				<th>Dates</th>
+				<th>Location</th>
+				<th>Grants</th>
+			</thead>
+			<tbody id="schoolListOld">
 			</tbody>
 		</table>
       </section>
@@ -49,7 +62,7 @@
 	
 	<script id="schoolListTemplate" type="x-jquery-tmpl">
 		<tr class="{{:#index%2 ? 'even' : 'odd'}}">
-			<td class="{{if isOld}} old {{else}} notOld {{/if}}">{{:deadline}}</td>
+			<td>{{:deadline}}</td>
 			<td><a href="{{>link}}">{{:name}}</a></td>
 			<td>{{:dates}}</td>
 			<td><a href="http://maps.google.com?q={{:location}}">{{:location}}</a></td>
@@ -57,7 +70,14 @@
 		</tr>
 	</script>
 	
-	<script type="text/javascript"> 
+	<script type="text/javascript">
+		function togglePrevious()
+		{
+			$('#showPreviousLink').toggle();
+			$('#previousSchoolTable').toggle();
+			$('#hidePreviousLink').toggle();
+		}
+	
 		$(document).ready(function()
 		{	
 			$(function listSchools()
@@ -102,7 +122,7 @@
 									}
 								}
 								
-								good.sort(function(a, b)
+								var sorter = function(k) {return function(a, b)
 								{
 									if(a.deadline == '?')
 										if(b.deadline != '?')
@@ -116,14 +136,17 @@
 									db = parse(b.deadline);
 									
 									if(da < db)
-										return -1;
+										return -1*k;
 									if(da > db)
-										return 1;
+										return 1*k;
 									return 0;
-								});
+								};};
 								
-								var schools = good.concat(bad);
-								$( "#schoolList" ).html($( "#schoolListTemplate" ).render( schools ));
+								good.sort(sorter(1));
+								bad.sort(sorter(-1));
+								
+								$( "#schoolListNew" ).html($( "#schoolListTemplate" ).render( good ));
+								$( "#schoolListOld" ).html($( "#schoolListTemplate" ).render( bad ));
 							}
 				);
 			});
