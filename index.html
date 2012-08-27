@@ -122,13 +122,18 @@
 									}
 								}
 								
+								var comp = function(a, b)
+								{
+									return a < b ? -1 : a > b ? 1 : 0;
+								}
+								
 								var sorter = function(k) {return function(a, b)
 								{
 									if(a.deadline == '?')
 										if(b.deadline != '?')
 											return 1;
 										else
-											return 0;
+											return comp(a.name, b.name);
 									if(b.deadline == '?')
 										return -1;
 									
@@ -139,7 +144,7 @@
 										return -1*k;
 									if(da > db)
 										return 1*k;
-									return 0;
+									return comp(a.name, b.name);
 								};};
 								
 								good.sort(sorter(1));
