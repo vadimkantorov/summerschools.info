@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Summer schools in Maths / CS in 2013</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="alternate" type="application/rss+xml" title="SummerSchools.info feed" href="http://feeds.feedburner.com/summerschools" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script src="javascripts/jsrender.js"></script>
+	
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 style="text-align:center">Summer schools in Maths / CS in 2013
+	  <header>
+        <h2>Contact us</h2>
+      </header>
+      <section>
+        <table>
+			<thead>
+				<th>Deadline</th>
+				<th>Name</th>
+				<th>Dates</th>
+				<th>Location</th>
+				<th>Grants</th>
+			</thead>
+			<tbody>
+				{% for post in site.posts }
+				<tr>
+					<td>{{ post.deadline }}</td>
+					<td>{{ post.title }}</td>
+					<td>{{ post.dates }}</td>
+					<td>{{ post.location }}</td>
+					<td>{{ post.grants }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+      </section>
+      <footer>
+        <small>In partnership with <a href="http://compsciclub.ru/en/schools">the Computer Science Club</a></small>
+      </footer>
+    </div>
+  </body>
+</html>
