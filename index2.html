@@ -37,8 +37,7 @@
  
       name = $( "#name" ),
       schoolLocation = $( "#location" ),
-      grants = $('#grants'),
-      allFields = $( [] ).add( name ).add( schoolLocation ).add(grants);
+      allFields = $( [] ).add( name ).add( schoolLocation );
  
 
  
@@ -52,8 +51,8 @@
       	var repo = github.getRepo("vadimkantorov", "summerschoolsinfo");
       	repo.write(
       		'gh-pages', 
-      		'_posts/2017-03-08-Summer-school-1.markdown', 
-      		'---\ntitle: ' + name.val() + '\nlocation: ' + schoolLocation.val() + '\ndeadline: 2013-04-09\ndates: 2014-04-09 - 2015-04-09\ngrants: ' + grants.text() + '\nurl: http://summerschools.info\n---\n', 
+      		'_posts/2018-03-08-Summer-school-1.markdown', 
+      		'---\ntitle: ' + name.val() + '\nlocation: ' + schoolLocation.val() + '\ndeadline: 2013-04-09\ndates: 2014-04-09 - 2015-04-09\ngrants: ' + $('#grants option:selected').text() + '\nurl: http://summerschools.info\n---\n', 
       		'commit by test', 
       		function(err) {}
       	);
