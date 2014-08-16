@@ -51,7 +51,7 @@
       	var repo = github.getRepo("vadimkantorov", "summerschoolsinfo");
       	repo.write(
       		'gh-pages', 
-      		'_posts/' + $('#deadline').val().replace(/\//, '-') + '-' + $('#name').val().replace(/ /g, '-') + '.markdown',
+      		'_posts/' + $('#deadline').val().replace(/\//g, '-') + '-' + $('#name').val().replace(/ /g, '-') + '.markdown',
       		'---\ntitle: ' + $('#name').val()
       		+ '\nlocation: ' + $('#location').val() 
       		+ '\ndeadline: ' + $('#deadline').val()
