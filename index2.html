@@ -52,12 +52,14 @@
       	repo.write(
       		'gh-pages', 
       		'_posts/' + $('#deadline').val().replace(/\//g, '-') + '-' + $('#name').val().replace(/ /g, '-') + '.markdown',
-      		'---\ntitle: ' + $('#name').val()
+      		'---'
+      		+ '\ntitle: ' + $('#name').val()
       		+ '\nlocation: ' + $('#location').val() 
       		+ '\ndeadline: ' + $('#deadline').val()
-      		+ '\ndates: ' + $('#from').val() + ' - ' + $('#to').val() +
+      		+ '\ndates: ' + $('#from').val() + ' - ' + $('#to').val()
       		+ '\ngrants: ' + $('#grants option:selected').text() 
-      		+ '\nurl: ' + $('#url').val(), 
+      		+ '\nurl: ' + $('#url').val()
+      		+ '---', 
       		'commit by test', 
       		function(err) {}
       	);
@@ -92,12 +94,7 @@
       dialog.dialog( "open" );
     });
     
-    $( "#deadline" ).datepicker({
-      showOn: "button",
-      buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-      buttonImageOnly: true,
-      buttonText: "Select date"
-    });
+    $( "#deadline" ).datepicker();
     
     $( "#from" ).datepicker({
       defaultDate: "+1w",
