@@ -51,7 +51,7 @@
       	var repo = github.getRepo("vadimkantorov", "summerschoolsinfo");
       	repo.write(
       		'gh-pages', 
-      		'_posts/2019-03-08-Summer-school-1.markdown', 
+      		'_posts/' + $('#deadline').val().replace('/', '-') + '-' + $('#name').val().replace(' ', '-') + '.markdown',
       		'---\ntitle: ' + $('#name').val()
       		+ '\nlocation: ' + $('#location').val() 
       		+ '\ndeadline: ' + $('#deadline').val()
@@ -127,7 +127,7 @@
 				<input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
 				<label for="url">Url</label>
 				<input type="text" name="url" id="url" value="http://official.website.url" class="text ui-widget-content ui-corner-all">
-				<label for="location">Location</label>
+				<label for="location">Geographical location</label>
 				<input type="text" name="location" id="location" value="" class="text ui-widget-content ui-corner-all">
 				<label for="deadline">Application deadline</label>
 				<input type="text" name="deadline" id="deadline" value="" class="text ui-widget-content ui-corner-all">
@@ -165,9 +165,9 @@
 				{% for post in site.posts %}
 				<tr>
 					<td>{{ post.deadline }}</td>
-					<td>{{ post.title }}</td>
+					<td><a href="{{ post.url }}">{{ post.title }}</a></td>
 					<td>{{ post.dates }}</td>
-					<td>{{ post.location }}</td>
+					<td><a href="http://maps.google.com?q={{ post.location }}">{{ post.location }}</a></td>
 					<td>{{ post.grants }}</td>
 				</tr>
 				{% endfor %}
