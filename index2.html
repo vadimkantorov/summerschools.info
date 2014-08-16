@@ -51,8 +51,13 @@
       	var repo = github.getRepo("vadimkantorov", "summerschoolsinfo");
       	repo.write(
       		'gh-pages', 
-      		'_posts/2018-03-08-Summer-school-1.markdown', 
-      		'---\ntitle: ' + name.val() + '\nlocation: ' + schoolLocation.val() + '\ndeadline: 2013-04-09\ndates: 2014-04-09 - 2015-04-09\ngrants: ' + $('#grants option:selected').text() + '\nurl: http://summerschools.info\n---\n', 
+      		'_posts/2019-03-08-Summer-school-1.markdown', 
+      		'---\ntitle: ' + $('#name').val()
+      		+ '\nlocation: ' + $('#location').val() 
+      		+ '\ndeadline: ' + $('#deadline').val()
+      		+ '\ndates: ' + $('#from').val() + ' - ' + $('#to').val() +
+      		+ '\ngrants: ' + $('#grants option:selected').text() 
+      		+ '\nurl: ' + $('#url').val(), 
       		'commit by test', 
       		function(err) {}
       	);
@@ -86,6 +91,29 @@
     $( "#create-user" ).button().on( "click", function() {
       dialog.dialog( "open" );
     });
+    
+    $( "#deadline" ).datepicker({
+      showOn: "button",
+      buttonImage: "http://jqueryui.com/images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date"
+    });
+    
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
   });
   </script>
   
@@ -96,8 +124,16 @@
 			<fieldset>
 				<label for="name">Name</label>
 				<input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+				<label for="url">Url</label>
+				<input type="text" name="url" id="url" value="http://official.website.url" class="text ui-widget-content ui-corner-all">
 				<label for="location">Location</label>
 				<input type="text" name="location" id="location" value="" class="text ui-widget-content ui-corner-all">
+				<label for="deadline">Application deadline</label>
+				<input type="text" name="deadline" id="deadline" value="" class="text ui-widget-content ui-corner-all">
+				<label for="from">School goes from</label>
+				<input type="text" id="from" name="from">
+				<label for="to">to</label>
+				<input type="text" id="to" name="to">
 				<label for="grants">Travel / accommodation grants</label>
 				<select name="grants" id="grants">
 					<option>Available</option>
