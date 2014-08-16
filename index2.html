@@ -36,8 +36,9 @@
     var dialog, form,
  
       name = $( "#name" ),
-      email = $( "#email" ),
-      allFields = $( [] ).add( name ).add( email );
+      schoolLocation = $( "#location" ),
+      grants = $('#grants'),
+      allFields = $( [] ).add( name ).add( email ).add(grants);
  
 
  
@@ -51,8 +52,8 @@
       	var repo = github.getRepo("vadimkantorov", "summerschoolsinfo");
       	repo.write(
       		'gh-pages', 
-      		'_posts/2015-03-08-Summer-school-1.markdown', 
-      		'---\ntitle: ' + name.val() + '\nlocation: ' + email.val() + '\ndeadline: 2013-04-09\ndates: 2014-04-09 - 2015-04-09\ngrants: available\nurl: http://summerschools.info\n---\n', 
+      		'_posts/2016-03-08-Summer-school-1.markdown', 
+      		'---\ntitle: ' + name.val() + '\nlocation: ' + schoolLocation.val() + '\ndeadline: 2013-04-09\ndates: 2014-04-09 - 2015-04-09\ngrants: ' + grants.text() + '\nurl: http://summerschools.info\n---\n', 
       		'commit by test', 
       		function(err) {}
       	);
@@ -96,9 +97,13 @@
 			<fieldset>
 				<label for="name">Name</label>
 				<input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
-				<label for="email">Location</label>
-				<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
-
+				<label for="location">Location</label>
+				<input type="text" name="location" id="location" value="" class="text ui-widget-content ui-corner-all">
+				<label for="grants">Travel / accommodation grants</label>
+				<select name="grants">
+					<option>Available</option>
+					<option>N/A</option>
+				</select>
 				<!-- Allow form submission with keyboard without duplicating the dialog button -->
 				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 			</fieldset>
